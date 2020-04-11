@@ -1,2 +1,2 @@
 # maru_home
-practice creating web pages
+practice creating web pages!
