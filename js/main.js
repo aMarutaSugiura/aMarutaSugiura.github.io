@@ -34,6 +34,6 @@ function func1(){
                 + carbohydrate_kcal_min + 'kcal ~ ' + carbohydrate_kcal_max + 'kcal)'
                 + '</p>';
 
-    
-    document.write(result);
+    document.getElementById('wrap').insertAdjacentHTML('POSITION',result);
+    //document.write(result);
 }
