@@ -30,9 +30,12 @@ function func1(){
                 + 'タンパク質 : ' + protein_gram + 'g (' + protein_kcal + 'kcal)'
                 + '</p>'
                 + '<p>'
+                + '脂質 : 作成中'
+                + '</p>'
+                + '<p>'
                 + '炭水化物 : ' + carbohydrate_gram_min + 'g ~ ' + carbohydrate_gram_max + 'g (' 
                 + carbohydrate_kcal_min + 'kcal ~ ' + carbohydrate_kcal_max + 'kcal)'
                 + '</p>';
-
-    document.write(result);
+    document.getElementById("output_result").innerHTML = result;
+    //document.write(result);
 }
