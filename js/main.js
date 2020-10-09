@@ -12,6 +12,10 @@ function func1(){
     var carbohydrate_gram_max = carbohydrate_kcal_max / 4;
 
     var result = '<p>'
+                + '</p>'
+                + '<p>'
+                + '</p>'
+                + '<p>'
                 + '除脂肪体重 : ' + lean_body_mass + 'kg'
                 + '</p>'
                 + '<p>'
@@ -26,9 +30,10 @@ function func1(){
                 + 'タンパク質 : ' + protein_gram + 'g (' + protein_kcal + 'kcal)'
                 + '</p>'
                 + '<p>'
-                + '炭水化物 : ' + carbohydrate_gram_min + ' ~ ' + carbohydrate_gram_max + 'g (' 
-                + carbohydrate_kcal_min + ' ~ ' + carbohydrate_kcal_max + 'kcal)'
-                + '</p>'
-                
+                + '炭水化物 : ' + carbohydrate_gram_min + 'g ~ ' + carbohydrate_gram_max + 'g (' 
+                + carbohydrate_kcal_min + 'kcal ~ ' + carbohydrate_kcal_max + 'kcal)'
+                + '</p>';
+
+    
     document.write(result);
 }
