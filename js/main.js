@@ -111,3 +111,9 @@ function changed_slider(boxId, sliderId){
     document.getElementById(boxId).value = quantity;
     func2();
 };
+
+function adjust_slider(adNum, boxId, sliderId){
+    document.getElementById(sliderId).value = document.getElementById(sliderId).value - 0  + adNum;
+    document.getElementById(boxId).value = document.getElementById(sliderId).value;
+    func2();
+};
