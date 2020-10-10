@@ -1,3 +1,16 @@
+function truncate(number, digit){
+    //
+    //number : 対象の数値
+    //digit : 四捨五入したい位
+    //
+    //ex.
+    //input : number 12.345, digit 2
+    //output : 12.3
+    //
+
+    return (Math.round(number * (Math.pow(10, digit-1)))) / (Math.pow(10, digit-1));
+};
+
 function func1(){
     var body_weight = document.getElementById("body_weight").value;
     var body_fat_percentage = document.getElementById("body_fat_percentage").value;
@@ -16,26 +29,26 @@ function func1(){
                 + '<p>'
                 + '</p>'
                 + '<p>'
-                + '除脂肪体重 : ' + lean_body_mass + 'kg'
+                + '除脂肪体重 : ' + truncate(lean_body_mass, 2) + 'kg'
                 + '</p>'
                 + '<p>'
-                + '最低摂取カロリー(基礎代謝) : ' + basal_metabolism + 'kcal'
+                + '最低摂取カロリー(基礎代謝) : ' + truncate(basal_metabolism, 1) + 'kcal'
                 + '</p>'
                 + '<p>'
-                + '最大摂取カロリー : ' + maximum_calorie_intake + 'kcal'
+                + '最高摂取カロリー : ' + truncate(maximum_calorie_intake, 1) + 'kcal'
                 + '<p>'
                 + '----------------マクロ栄養素----------------'
                 + '</p>'
                 + '<p>'
-                + 'タンパク質 : ' + protein_gram + 'g (' + protein_kcal + 'kcal)'
+                + 'タンパク質 : ' + truncate(protein_gram, 1) + 'g (' + truncate(protein_kcal, 1) + 'kcal)'
                 + '</p>'
                 + '<p>'
                 + '脂質 : 作成中'
                 + '</p>'
                 + '<p>'
-                + '炭水化物 : ' + carbohydrate_gram_min + 'g ~ ' + carbohydrate_gram_max + 'g (' 
-                + carbohydrate_kcal_min + 'kcal ~ ' + carbohydrate_kcal_max + 'kcal)'
+                + '炭水化物 : ' + truncate(carbohydrate_gram_min,1) + 'g ~ ' + truncate(carbohydrate_gram_max,1) + 'g (' 
+                + truncate(carbohydrate_kcal_min,1) + 'kcal ~ ' + truncate(carbohydrate_kcal_max,1) + 'kcal)'
                 + '</p>';
     document.getElementById("output_result").innerHTML = result;
     //document.write(result);
-}
+};
