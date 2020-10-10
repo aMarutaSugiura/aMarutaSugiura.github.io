@@ -98,3 +98,16 @@ function func2(){
 
     document.getElementById("meal_result").innerHTML = h;
 };
+
+function changed_box(boxId, sliderId){
+    var quantity = document.getElementById(boxId).value;
+    document.getElementById(sliderId).value = quantity;
+    func2();
+};
+
+function changed_slider(boxId, sliderId){
+    var quantity = document.getElementById(sliderId).value;
+    console.log(quantity);
+    document.getElementById(boxId).value = quantity;
+    func2();
+};
