@@ -52,3 +52,53 @@ function func1(){
     document.getElementById("output_result").innerHTML = result;
     //document.write(result);
 };
+
+function func2(){
+    let table = document.getElementById('nutritionTable');
+
+    var rice = document.getElementById("rice").value;
+    var potato = document.getElementById("potato").value;
+    var pasta = document.getElementById("pasta").value;
+    var bird = document.getElementById("bird").value;
+    var egg = document.getElementById("egg").value;
+
+    var protein = document.getElementById("rice").value * 6.1/100
+                + document.getElementById("potato").value * 1.6/100
+                + document.getElementById("pasta").value * 12.2/100
+                + document.getElementById("bird").value * 23.0/100
+                + document.getElementById("egg").value * 12.3/100;
+
+    var fat = document.getElementById("rice").value * 0.9/100
+                + document.getElementById("potato").value * 0.1/100
+                + document.getElementById("pasta").value * 1.9/100
+                + document.getElementById("bird").value * 0.8/100
+                + document.getElementById("egg").value * 10.3/100;
+
+    var carbohydrate = document.getElementById("rice").value * 83.1/100
+                + document.getElementById("potato").value * 16.9/100
+                + document.getElementById("pasta").value * 73.5/100
+                + document.getElementById("bird").value * 0/100
+                + document.getElementById("egg").value * 0.3/100;
+
+    var calorie = protein*4 + fat*9 + carbohydrate*4;
+
+    var h = '<table>'
+            + '<tr>'
+            +   '<th></th>'
+            +   '<th>タンパク質[g]</th>'
+            +   '<th>脂質[g]</th>'
+            +   '<th>炭水化物[g]</th>'
+            +   '<th>摂取カロリー[kcal]</th>'
+            //+   '<th>'+ document.getElementById("r_p").value + '</th>'
+            + '</tr>'
+            + '<tr>'
+            +   '<th>合計</th>'
+            +   '<th>' + truncate(protein,2) + '</th>'
+            +   '<th>' + truncate(fat,2) + '</th>'
+            +   '<th>' + truncate(carbohydrate,2) + '</th>'
+            +   '<th>' + truncate(calorie,2) + '</th>'
+            + '</tr>'
+            + '</table>';
+
+    document.getElementById("meal_result").innerHTML = h;
+};

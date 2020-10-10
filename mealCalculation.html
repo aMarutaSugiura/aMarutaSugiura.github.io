@@ -10,6 +10,60 @@
     </h1>
 
     <h2>一日分の食事を計画する</h2>
-    <p>cominng soon...</p>
+    <table id="nutritionTable">
+        <tr>
+            <th>食材</th>
+            <th>タンパク質[g]</th>
+            <th>脂質[g]</th>
+            <th>炭水化物[g]</th>
+            <th>摂取量[g]</th>
+        </tr>
+        <tr>
+            <!- こめ　［水稲穀粒］　精白米　うるち米 ->
+            <th>白米</th>
+            <th id="r_p">6.1</th>
+            <th id="r_f">0.9</th>
+            <th id="r_c">83.1</th>
+            <th><input type="number" id="rice" value=""></th>
+            <th>※一合＝約150g</th>
+        </tr>
+        <tr>
+            <!- ＜いも類＞じゃがいも　塊茎　生 ->
+            <th>じゃがいも</th>
+            <th id="po_p">1.6</th>
+            <th id="po_f">0.1</th>
+            <th id="po_c">16.9</th>
+            <th><input type="number" id="potato" value=""></th>
+        </tr>
+        <tr>
+            <!- こむぎ　［マカロニ・スパゲッティ類］　マカロニ・スパゲッティ　乾 ->
+            <th>パスタ（乾燥）</th>
+            <th id="pa_p">12.2</th>
+            <th id="pa_f">1.9</th>
+            <th id="pa_c">73.5</th>
+            <th><input type="number" id="pasta" value=""></th>
+        </tr>
+        <tr>
+            <!- ＜鳥肉類＞にわとり　［若鶏肉］　ささ身　生 ->
+            <th>鶏ささみ（生）</th>
+            <th id="b_p">23.0</th>
+            <th id="b_f">0.8</th>
+            <th id="b_c">0</th>
+            <th><input type="number" id="bird" value=""></th>
+        </tr>
+        <tr>
+            <!- 鶏卵　全卵　生 ->
+            <th>全卵</th>
+            <th id="e_p">12.3</th>
+            <th id="e_f">10.3</th>
+            <th id="e_c">0.3</th>
+            <th><input type="number" id="egg" value=""></th>
+            <th>※一個＝約50g</th>
+        </tr>
+    </table>
+    <input type="button" onclick="func2()" value="計算">
+    <div id='meal_result'></div>
+    <script type="text/javascript" src="js/main.js">
+    </script>
 </body>
 </html>
