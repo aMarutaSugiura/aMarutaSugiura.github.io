@@ -25,10 +25,6 @@ function func1(){
     var carbohydrate_gram_max = carbohydrate_kcal_max / 4;
 
     var result = '<p>'
-                + '</p>'
-                + '<p>'
-                + '</p>'
-                + '<p>'
                 + '除脂肪体重 : ' + truncate(lean_body_mass, 2) + 'kg'
                 + '</p>'
                 + '<p>'
