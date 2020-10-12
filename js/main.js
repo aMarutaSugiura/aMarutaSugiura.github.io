@@ -44,7 +44,11 @@ function func1(){
                 + '<p>'
                 + '炭水化物 : ' + truncate(carbohydrate_gram_min,1) + 'g ~ ' + truncate(carbohydrate_gram_max,1) + 'g (' 
                 + truncate(carbohydrate_kcal_min,1) + 'kcal ~ ' + truncate(carbohydrate_kcal_max,1) + 'kcal)'
+                + '</p>'
+                + '<p>'
+                + '<input type="button" onclick='
                 + '</p>';
+
     document.getElementById("output_result").innerHTML = result;
     //document.write(result);
 };
@@ -76,26 +80,39 @@ function func2(){
                 + document.getElementById("bird").value * 0/100
                 + document.getElementById("egg").value * 0.3/100;
 
-    var calorie = protein*4 + fat*9 + carbohydrate*4;
+    var total_gram = protein+fat+carbohydrate;
+    var total_calorie = protein*4 + fat*9 + carbohydrate*4;
+    
 
     var h = '<table>'
             + '<tr>'
             +   '<th></th>'
-            +   '<th>タンパク質[g]</th>'
-            +   '<th>脂質[g]</th>'
-            +   '<th>糖質[g]</th>'
-            +   '<th>熱量[kcal]</th>'
+            +   '<th>タンパク質</th>'
+            +   '<th>脂質</th>'
+            +   '<th>糖質</th>'
+            +   '<th>合計</th>'
             + '</tr>'
             + '<tr>'
-            +   '<th>合計</th>'
-            +   '<th>' + truncate(protein,2) + '</th>'
-            +   '<th>' + truncate(fat,2) + '</th>'
-            +   '<th>' + truncate(carbohydrate,2) + '</th>'
-            +   '<th>' + truncate(calorie,2) + '</th>'
+            +   '<th>[g]</th>'
+            +   '<th>' + truncate(protein,2) + '(' + truncate(protein*10/(total_gram), 2) + ')</th>'
+            +   '<th>' + truncate(fat,2) + '(' + truncate(fat*10/(total_gram), 2) + ')</th>'
+            +   '<th>' + truncate(carbohydrate,2) + '(' + truncate(carbohydrate*10/(total_gram), 2) + ')</th>'
+            +   '<th>' + truncate(total_gram,2) + '</th>'
             + '</tr>'
-            + '</table>';
+            + '<tr>'
+            +   '<th>[kcal]</th>'
+            +   '<th>' + truncate(protein*4,2) + '(' + truncate(protein*4*10/(total_calorie), 2) + ')</th>'
+            +   '<th>' + truncate(fat*9,2) + '(' + truncate(fat*9*10/(total_calorie), 2) + ')</th>'
+            +   '<th>' + truncate(carbohydrate*4,2) + '(' + truncate(carbohydrate*4*10/(total_calorie), 2) + ')</th>'
+            +   '<th>' + truncate(total_calorie,2) + '</th>'
+            + '</tr>'
+            + '</table>'
+            +'<p>熱量構成比<canvas id="band_graph" width="600" height="400"></canvas></p>';
 
     document.getElementById("meal_result").innerHTML = h;
+    draw_bandgraph(truncate(protein*4*10/(total_calorie), 2), truncate(fat*9*10/(total_calorie), 2), truncate(carbohydrate*4*10/(total_calorie), 2));
+
+
 };
 
 function changed_box(boxId, sliderId){
@@ -115,4 +132,44 @@ function adjust_slider(adNum, boxId, sliderId){
     document.getElementById(sliderId).value = document.getElementById(sliderId).value - 0  + adNum;
     document.getElementById(boxId).value = document.getElementById(sliderId).value;
     func2();
+};
+
+function reset(){
+    document.getElementById('rice').value = 0;
+    document.getElementById('potato').value = 0;
+    document.getElementById('pasta').value = 0;
+    document.getElementById('bird').value = 0;
+    document.getElementById('egg').value = 0;
+    document.getElementById('rice_slider').value = 0;
+    document.getElementById('potato_slider').value = 0;
+    document.getElementById('pasta_slider').value = 0;
+    document.getElementById('bird_slider').value = 0;
+    document.getElementById('egg_slider').value = 0;
+    func2();
+};
+
+function draw_bandgraph(pcal, fcal, ccal){
+    const canvas = document.getElementById('band_graph');
+
+    canvas.width = 400;
+    canvas.height = 50;
+
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'rgb(255, 180, 180)';
+    ctx.fillRect(0,0,pcal*canvas.width/10,50);
+
+    ctx.fillStyle = 'rgb(255, 255, 130)';
+    ctx.fillRect(pcal*canvas.width/10, 0, fcal*canvas.width/10,50);
+    
+    ctx.fillStyle = 'rgb(200, 200, 255)';
+    ctx.fillRect(pcal*canvas.width/10+fcal*canvas.width/10, 0, ccal*canvas.width/10, 50);
+    
+    ctx.fillStyle = "black";
+    ctx.font = "20px 'Verdana'";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("P :" + pcal, pcal*canvas.width/10/2, canvas.height/2, 200);
+    ctx.fillText("F :" + fcal, pcal*canvas.width/10 + fcal*canvas.width/10/2, canvas.height/2, 200);
+    ctx.fillText("C :" + ccal, pcal*canvas.width/10 + fcal*canvas.width/10 + ccal*canvas.width/10/2, canvas.height/2, 200);
 };
