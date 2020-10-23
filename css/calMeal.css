@@ -110,6 +110,7 @@ input[type="button"]{
     .side{
         width: auto;
         float: none;
+        display: none;
     }
 
     table{
@@ -123,6 +124,10 @@ input[type="button"]{
         padding: 1%;
         border: solid 1px black;
         border-bottom: solid 3px black;
+    }
+
+    table#resultTable th{
+        width: auto;
     }
 
     td {
