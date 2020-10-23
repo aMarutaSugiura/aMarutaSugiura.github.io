@@ -105,6 +105,7 @@ input[type="button"]{
         padding: 0;
         border: none;
         float: none;
+        margin: 0 0 35% 0;
     }
 
     .side{
@@ -128,6 +129,8 @@ input[type="button"]{
 
     table#resultTable th{
         width: auto;
+        background: rgb(0, 0, 0);
+        color: white;
     }
 
     td {
@@ -185,4 +188,14 @@ input[type="button"]{
     /* input{
         width: auto;
     } */
+
+    .resultbar{
+        background: rgb(255, 255, 255);
+        position: fixed;
+        bottom: 8%;
+        margin: 0;
+        height: 20%;
+        /* padding: 0px; */
+    }
+
 }

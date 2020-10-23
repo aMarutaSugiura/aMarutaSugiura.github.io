@@ -148,7 +148,7 @@ function draw_bandgraph(pcal, fcal, ccal){
     const canvas = document.getElementById('band_graph');
 
     canvas.width = $( window ).width()*0.95;
-    canvas.height = 40;
+    canvas.height = 20;
 
     //console.log(pcal)
 
