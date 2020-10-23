@@ -1,60 +1,108 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>一日分の食事 -Workout Tools-</title>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/calMeal.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/calMeal.css">
 </head>
+
 <body>
-    <h1>
-        <a href="index.html">Workout Tools</a>
-    </h1>
+    <!-- ヘッダー開始 -->
+    <div class="header">
+        <h1 class="logo-wrapper">
+            <!-- <a href="index.html">Workout Tools</a> -->
+            <a href="index.html"><img src="img/freeWeight.jpg" alt="ロゴ" class="logo"></a>
+        </h1>
+    </div>
+    <!-- ヘッダー終了 -->
 
-    <noscript><p>JavaScriptを有効にしてください</p></noscript>
 
-    <h2>一日分の食事を計画する</h2>
-    <table id="nutritionTable">
-        <tr>
-            <th>食材</th>
-            <th>タンパク質[g]</th>
-            <th>脂質[g]</th>
-            <th>糖質[g]</th>
-            <th>摂取量[g]</th>
-        </tr>
-        <tr>
-            <td><input id="newName" type="text" placeholder="食材名"></td>
-            <td><input id="newProtein" type="number" placeholder="タンパク質[g]"></td>
-            <td><input id="newFat" type="number" placeholder="脂質[g]"></td>
-            <td><input id="newCarbohydrate" type="number" placeholder="糖質[g]"></td>
-            <td><input id="basisAmount" type="number" value="100">g当たり</td>
-            <td><input id="newFood" type="button" value="追加" onclick="add_food()"></td>
-        </tr>
-    </table>
-    <p><input type="button" onclick="reset()" value="リセット"></p>
-    <table id='resultTable'>
-        <tr>
-            <th></th>
-            <th>タンパク質</th>
-            <th>脂質</th>
-            <th>糖質</th>
-            <th>合計</th>
-        </tr>
-        <tr>
-            <th>[g]</th>
-            <td id='r_gp'>0</td>
-            <td id='r_gf'>0</td>
-            <td id='r_gc'>0</td>
-            <td id='g_total'>0</td>
-        </tr>
-        <tr>
-            <th>[kcal]</th>
-            <td id='r_cp'>0</td>
-            <td id='r_cf'>0</td>
-            <td id='r_cc'>0</td>
-            <td id='c_total'>0</td>
-        </tr>
-    </table>
-    <p>熱量構成比<canvas id="band_graph" width="400" height="50"></canvas></p>
+    <noscript>
+        <p>JavaScriptを有効にしてください</p>
+    </noscript>
+
+    <!-- メインとサイドバーを囲むラッパー開始 -->
+    <div class="wrapper">
+
+        <!-- メイン開始 -->
+        <div class="main">
+            <h1>一日分の食事を計画する</h1>
+            <table id="nutritionTable">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>蛋白質[g]</th>
+                    <th>脂質[g]</th>
+                    <th>糖質[g]</th>
+                </tr>
+                <tr>
+                    <td id='namecell' rowspan="2"><input id="newName" type="text" placeholder="食材名"></td>
+                    <td><input id="newProtein" type="number" placeholder="蛋白質[g]"></td>
+                    <td><input id="newFat" type="number" placeholder="脂質[g]"></td>
+                    <td><input id="newCarbohydrate" type="number" placeholder="糖質[g]"></td>
+                </tr>
+                <tr>
+                    <td id='perGram'><input id="basisAmount" type="number" value="100">g当たり</td>
+                    <td>&nbsp;</td>
+                    <td id='newFood'><input id="addfood" type="button" value="追加" onclick="add_food()"></td>
+                </tr>
+            </table>
+            <p><input type="button" onclick="reset()" value="clear"></p>
+            <table id='resultTable'>
+                <tr>
+                    <th></th>
+                    <th>蛋白質</th>
+                    <th>脂質</th>
+                    <th>糖質</th>
+                    <th>合計</th>
+                </tr>
+                <tr>
+                    <th>[g]</th>
+                    <td id='r_gp'>0</td>
+                    <td id='r_gf'>0</td>
+                    <td id='r_gc'>0</td>
+                    <td id='g_total'>0</td>
+                </tr>
+                <tr>
+                    <th>[kcal]</th>
+                    <td id='r_cp'>0</td>
+                    <td id='r_cf'>0</td>
+                    <td id='r_cc'>0</td>
+                    <td id='c_total'>0</td>
+                </tr>
+            </table>
+            <p>熱量構成比<canvas id="band_graph" width="400" height="50"></canvas></p>
+        </div>
+        <!-- メイン終了 -->
+
+        <!-- サイドバー開始 -->
+        <div class="side">
+
+            <!-- 食材リスト開始 -->
+            <div class="foodList">
+                <input type="checkbox" name="displayfood" value="0" checked="checked">精白米
+                <input type="checkbox" name="displayfood" value="1" checked="checked">じゃがいも(生)
+                <input type="checkbox" name="displayfood" value="2" checked="checked">パスタ(乾燥)
+                
+            </div>
+            <!-- 食材リスト終了 -->
+
+
+        </div>
+        <!-- サイドバー終了 -->
+
+    </div>
+    <!-- メインとサイドバーを囲むラッパー終了 -->
+
+    <!-- フッター開始 -->
+    <div class="footer">
+        <small>&copy; 2020 daru</small>
+    </div>
+    <!-- フッター終了 -->
+
 </body>
+
 </html>

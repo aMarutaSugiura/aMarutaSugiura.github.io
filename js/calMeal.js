@@ -3,25 +3,28 @@ var foodID = 0;
 function insertFood(food){
     //console.log(food["name"]);
     let table = document.getElementById('nutritionTable');
-    let row = table.insertRow(table.rows.length-1);
-    //console.log(table.rows.length)
+    let row_macro = table.insertRow(table.rows.length-2);
+    let row_intake = table.insertRow(table.rows.length-2);
+    //console.log(table.rows);
 
-    let ncell = row.insertCell(-1);
+    let ncell = row_macro.insertCell(-1);
     ncell.className = "name";
+    ncell.rowSpan = "2";
 
-    let pcell = row.insertCell(-1);
+    let pcell = row_macro.insertCell(-1);
     pcell.className = "protein";
 
-    let fcell = row.insertCell(-1);
+    let fcell = row_macro.insertCell(-1);
     fcell.className = "fat";
 
-    let ccell = row.insertCell(-1);
+    let ccell = row_macro.insertCell(-1);
     ccell.className = "carbohydrate";
 
-    let intakecell = row.insertCell(-1);
-    //intakecell.id = "box" + foodID;
-    let slidercell = row.insertCell(-1);
-    //slidercell.id = "slider" + foodID;
+    let intakecell = row_intake.insertCell(-1);
+    intakecell.className = "box";
+    let slidercell = row_intake.insertCell(-1);
+    slidercell.className = "slider";
+    slidercell.colSpan = "2";
 
     //HTML for button
     // $("<input>", {
@@ -42,10 +45,13 @@ function insertFood(food){
                 + "<input type='range' id='slider" + foodID + "' min='0' max='1000' step='1' value='0' oninput='changed_slider(" + joinStr('box', foodID)+ "," + joinStr('slider', foodID) + ")'>"
                 + "<input type='button' onclick='adjust_slider(10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='+10g'>";
 
+    
+    
     ncell.innerHTML = food["name"];
     pcell.innerHTML = food["protein"];
     fcell.innerHTML = food["fat"];
     ccell.innerHTML = food["carbohydrate"];
+
     intakecell.innerHTML = intake;
     slidercell.innerHTML = slider;
 
