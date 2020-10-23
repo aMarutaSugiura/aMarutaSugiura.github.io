@@ -147,8 +147,8 @@ function truncate(number, digit){
 function draw_bandgraph(pcal, fcal, ccal){
     const canvas = document.getElementById('band_graph');
 
-    canvas.width = 400;
-    canvas.height = 50;
+    canvas.width = $( window ).width()*0.95;
+    canvas.height = 40;
 
     //console.log(pcal)
 
@@ -164,7 +164,7 @@ function draw_bandgraph(pcal, fcal, ccal){
     ctx.fillRect(pcal*canvas.width/10+fcal*canvas.width/10, 0, ccal*canvas.width/10, 50);
     
     ctx.fillStyle = "black";
-    ctx.font = "20px 'Verdana'";
+    ctx.font = "15px 'Verdana'";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText("P :" + pcal, pcal*canvas.width/10/2, canvas.height/2, 200);
@@ -213,3 +213,5 @@ function putResult(){
 $(document).ready(function() {
     initFoods();
 })
+
+//$( '#band_graph' ).get( 0 ).width = $( window ).width();
