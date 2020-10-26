@@ -21,10 +21,15 @@ function insertFood(food){
     ccell.className = "carbohydrate";
 
     let intakecell = row_intake.insertCell(-1);
-    intakecell.className = "box";
-    let slidercell = row_intake.insertCell(-1);
-    slidercell.className = "slider";
-    slidercell.colSpan = "2";
+    //intakecell.className = "box";
+    intakecell.className ="intake";
+    //intakecell.id = 'intake' + foodID;
+    intakecell.colSpan = "3";
+    // let slidercell = row_intake.insertCell(-1);
+    // slidercell.className = "slider";
+    // slidercell.colSpan = "2";
+
+    let checkBox = "<input type='checkbox' id=check" + foodID + " onclick='switch_display(this)' checked='checked'>";
 
     //HTML for button
     // $("<input>", {
@@ -37,25 +42,53 @@ function insertFood(food){
     //     changed_box(intakeID,joinStr(intakeID, "_slider"));
     // });
 
-    let intake = "<input type='number' id=box" + foodID + " placeholder='0' onkeyup='changed_box(" + joinStr('box', foodID) + "," + joinStr('slider', foodID) +")'>";
+    let intake = "<input type='number' id=box" + foodID + " placeholder='0' onkeyup='changed_box(" + joinStr('box', foodID) + "," + joinStr('slider', foodID) +")'>"
+                + "<input type='button' onclick='adjust_slider(-10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='-10g'>"
+                + "<input type='range' id='slider" + foodID + "' min='0' max='2000' step='1' value='0' oninput='changed_slider(" + joinStr('box', foodID)+ "," + joinStr('slider', foodID) + ")'>"
+                + "<input type='button' onclick='adjust_slider(10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='+10g'>";
 
 
     //HTML for slider
-    let slider =  "<input type='button' onclick='adjust_slider(-10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='-10g'>"
-                + "<input type='range' id='slider" + foodID + "' min='0' max='1000' step='1' value='0' oninput='changed_slider(" + joinStr('box', foodID)+ "," + joinStr('slider', foodID) + ")'>"
-                + "<input type='button' onclick='adjust_slider(10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='+10g'>";
+    // let slider =  "<input type='button' onclick='adjust_slider(-10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='-10g'>"
+    //             + "<input type='range' id='slider" + foodID + "' min='0' max='1000' step='1' value='0' oninput='changed_slider(" + joinStr('box', foodID)+ "," + joinStr('slider', foodID) + ")'>"
+    //             + "<input type='button' onclick='adjust_slider(10,"  + joinStr('box', foodID) + "," + joinStr('slider', foodID) + ")' value='+10g'>";
 
     
     
-    ncell.innerHTML = food["name"];
+    ncell.innerHTML = checkBox + food["name"];
     pcell.innerHTML = food["protein"];
     fcell.innerHTML = food["fat"];
     ccell.innerHTML = food["carbohydrate"];
 
     intakecell.innerHTML = intake;
-    slidercell.innerHTML = slider;
+    //slidercell.innerHTML = slider;
 
     foodID++;
+};
+
+function switch_display(obj){
+
+    //チェックボックスからさかのぼってマクロと摂取量のrowを取得
+    let macro_row = obj.parentNode.parentNode;
+    let intake_row = obj.parentNode.parentNode.parentNode.parentNode.rows[macro_row.rowIndex+1];
+    //console.log(table);
+    // console.log(macro_row);
+    // console.log(intake_row);
+    // console.log(macro_row.rowIndex);
+    // console.log(intake_row.children[0].children[2]);
+    macro_row.style.display = (obj.checked) ? '' : 'none';
+    intake_row.style.display = (obj.checked) ? '' : 'none';
+    
+    //入力値を0にする
+    intake_row.children[0].children[0].value = 0;
+    intake_row.children[0].children[2].value = 0;
+    putResult();
+    //document.getElementById('box'+ i).value = 0;
+    //document.getElementById('slider' + i).value = 0;
+    // for(var i=0; table.rows[i];i++){
+    //     console.log(table.rows[1]);
+    //     //table.rows[i].style.display = (obj.checked) ? '' : 'none';
+    // };
 };
 
 function initFoods(){
