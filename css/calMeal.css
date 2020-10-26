@@ -163,11 +163,11 @@ input[type="button"]{
     }
 
     input[type="range"]{
-        width: 50%;
+        width: 49%;
     }
 
     input[type="text"], input[type="number"]{
-        width: 12%;
+        width: 14%;
         font-size: 16px;
     }
 
