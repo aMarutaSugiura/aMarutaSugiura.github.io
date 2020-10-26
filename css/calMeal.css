@@ -180,7 +180,7 @@ input[type="button"]{
     }
     
     #newName, #newProtein, #newFat, #newCarbohydrate{
-        width: 90%;
+        width: 80%;
 
     }
 
