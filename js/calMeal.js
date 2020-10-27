@@ -29,7 +29,7 @@ function insertFood(food){
     // slidercell.className = "slider";
     // slidercell.colSpan = "2";
 
-    let checkBox = "<input type='checkbox' id=check" + foodID + " onclick='switch_display(this)' checked='checked'>";
+    let checkBox = "<input type='checkbox' id=check" + foodID + " onclick='switch_display(this)' checked='checked'><label for=check" + foodID + " onclick=''>" + food["name"] + "</label>";
 
     //HTML for button
     // $("<input>", {
@@ -55,7 +55,7 @@ function insertFood(food){
 
     
     
-    ncell.innerHTML = checkBox + food["name"];
+    ncell.innerHTML = checkBox;
     pcell.innerHTML = food["protein"];
     fcell.innerHTML = food["fat"];
     ccell.innerHTML = food["carbohydrate"];
