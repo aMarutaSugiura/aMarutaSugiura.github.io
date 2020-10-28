@@ -9,6 +9,7 @@ function insertFood(food){
 
     let ncell = row_macro.insertCell(-1);
     ncell.className = "name";
+    ncell.id = "food"+foodID;
     ncell.rowSpan = "2";
 
     let pcell = row_macro.insertCell(-1);
@@ -29,7 +30,7 @@ function insertFood(food){
     // slidercell.className = "slider";
     // slidercell.colSpan = "2";
 
-    let checkBox = "<input type='checkbox' id=check" + foodID + " onclick='switch_display(this)' checked='checked'><label for=check" + foodID + " onclick=''>" + food["name"] + "</label>";
+    //let checkBox = "<input type='checkbox' id=ssacheck" + foodID + " onclick='switch_display(this)' checked='checked'><label for=check" + foodID + " onclick=''>" + food["name"] + "</label>";
 
     //HTML for button
     // $("<input>", {
@@ -55,30 +56,40 @@ function insertFood(food){
 
     
     
-    ncell.innerHTML = checkBox;
+    ncell.innerHTML = food["name"];
     pcell.innerHTML = food["protein"];
     fcell.innerHTML = food["fat"];
     ccell.innerHTML = food["carbohydrate"];
 
     intakecell.innerHTML = intake;
     //slidercell.innerHTML = slider;
+    add_foodlist(foodID, food['name']);
 
     foodID++;
 };
 
-function switch_display(obj){
+function switch_display(obj,id){
 
     //チェックボックスからさかのぼってマクロと摂取量のrowを取得
-    let macro_row = obj.parentNode.parentNode;
-    let intake_row = obj.parentNode.parentNode.parentNode.parentNode.rows[macro_row.rowIndex+1];
-    //console.log(table);
+    // let macro_row = obj.parentNode.parentNode;
+    // let intake_row = obj.parentNode.parentNode.parentNode.parentNode.rows[macro_row.rowIndex+1];
+    // console.log(obj);
+    // console.log(id);
+    // let macro_row = document.getElementById(id).parentNode;
+    // let intake_row = document.getElementById(id).parentNode.parentNode.parentNode.rows[macro_row.rowIndex+1];
+    let macro_row = id.parentNode;
+    let intake_row = id.parentNode.parentNode.parentNode.rows[macro_row.rowIndex+1];
+
+    //console.log(id.rowIndex);
     // console.log(macro_row);
     // console.log(intake_row);
     // console.log(macro_row.rowIndex);
     // console.log(intake_row.children[0].children[2]);
+    //macro_row.style.display = (obj.checked) ? '' : 'none';
     macro_row.style.display = (obj.checked) ? '' : 'none';
     intake_row.style.display = (obj.checked) ? '' : 'none';
-    
+    //console.log(check.checked);
+
     //入力値を0にする
     intake_row.children[0].children[0].value = 0;
     intake_row.children[0].children[2].value = 0;
@@ -248,3 +259,25 @@ $(document).ready(function() {
 })
 
 //$( '#band_graph' ).get( 0 ).width = $( window ).width();
+
+function add_foodlist(foodID, foodName){
+    
+
+    let id = 'food' + foodID;
+    let checkid = 'check' + foodID;
+    let check = document.createElement('input');
+    check.setAttribute('type','checkbox');
+    check.setAttribute('id',checkid);
+    check.setAttribute('onclick', 'switch_display(this, '+id+')');
+    check.setAttribute('checked','checked');
+
+    let label = document.createElement('label');
+    label.htmlFor = checkid;
+    label.appendChild(document.createTextNode(foodName));
+
+    let divNode = document.getElementById("foodList-content");
+    divNode.appendChild(check);
+    divNode.appendChild(label);
+    divNode.appendChild(document.createElement('br'));
+
+};

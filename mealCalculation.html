@@ -49,8 +49,7 @@
                     <td><input id="addfood" type="button" value="追加" onclick="add_food()"></td>
                 </tr>
             </table>
-            <p><input type="button" onclick="reset()" value="clear"></p>
-            
+                        
             <!-- resultバー開始 -->
             <div class="resultbar">
             <table id='resultTable'>
@@ -87,12 +86,11 @@
         <!-- サイドバー開始 -->
         <div class="side">
 
-            <!-- 食材リスト開始 -->
-            <div class="foodList">
-                <input type="checkbox" name="displayfood" value="0" checked="checked">精白米
-                <input type="checkbox" name="displayfood" value="1" checked="checked">じゃがいも(生)
-                <input type="checkbox" name="displayfood" value="2" checked="checked">パスタ(乾燥)
-                
+            <div id="foodListDisplay">
+                <input id="foodList-input" type="checkbox" class="foodList-unshown">
+                <label id="foodList-open" for="foodList-input"><span></span></label>
+                <label class="foodList-unshown" id="foodList-close" for="foodList-input"></label>
+                <div id="foodList-content"></div>
             </div>
             <!-- 食材リスト終了 -->
 
